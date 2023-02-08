@@ -1,0 +1,19 @@
+<ion-content [fullscreen]="true" class="ion-padding">
+  <ion-list style="background: none;">
+    <ng-container *ngIf="nextLaunches.length > 0">
+      <ion-label>Next Launches</ion-label>
+      <div class="scrolling-wrapper">
+        <ion-card class="card" *ngFor="let launch of nextLaunches" (click)="selectLaunch(launch)">
+          <img height="150px" width="100%" src={{launch?.image}}>
+          <ion-card-header>
+            <ion-card-subtitle>{{launch?.net | date:'longTime'}}</ion-card-subtitle>
+            <ion-card-title>{{getLaunchName(launch.name)}}</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-text>Status: {{launch?.status?.name}}</ion-text>
+          </ion-card-content>
+        </ion-card>
+      </div>
+    </ng-container>
+  </ion-list>
+</ion-content>
