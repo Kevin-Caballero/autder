@@ -47,3 +47,32 @@ ion-toolbar {
   --background-color: transparent;
   --ion-color-base: transparent !important;
 }
+
+.people-in-space-wrapper {
+  margin-top: 30px;
+}
+
+.in-space {
+  margin-top: 10px;
+  border: 1px solid var(--ion-color-primary);
+  border-radius: 10px;
+  min-height: 120px;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &.people {
+    background-image: url('/assets/people-in-space.png');
+  }
+
+  &.aliens {
+    background-image: url('/assets/aliens-in-space.png');
+  }
+
+  ion-label {
+    font-size: 4em;
+    font-weight: bold;
+  }
+
+}

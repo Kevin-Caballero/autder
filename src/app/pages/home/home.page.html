@@ -1,4 +1,13 @@
-<ion-content [fullscreen]="true" class="ion-padding">
+<!-- <ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Page Two</ion-title>
+  </ion-toolbar>
+</ion-header> -->
+
+<ion-content scrollY="true" class="ion-padding">
   <ion-list style="background: none;">
     <ng-container *ngIf="nextLaunches.length > 0">
       <ion-label>Next Launches</ion-label>
@@ -15,5 +24,19 @@
         </ion-card>
       </div>
     </ng-container>
+
+    <div class="people-in-space-wrapper">
+      <ion-label>How many people is out there?</ion-label>
+      <div class="people in-space">
+        <ion-label>{{peopleInSpace.length}}</ion-label>
+      </div>
+    </div>
+
+    <div class="people-in-space-wrapper">
+      <ion-label>How many aliens are out there?</ion-label>
+      <div class="aliens in-space">
+        <ion-label>{{aliensInSpace}}</ion-label>
+      </div>
+    </div>
   </ion-list>
 </ion-content>

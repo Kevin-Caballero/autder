@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { take } from 'rxjs';
 import { ILaunch } from 'src/app/models/launch.interface';
+import { IPeopleInSpacePerson } from 'src/app/models/people-in-space-person.interface';
+import { IResponsePeopleInSpace } from 'src/app/models/people-in-space-response.interface';
 import { IResponse } from 'src/app/models/response.interface';
 
 @Component({
@@ -14,6 +16,9 @@ export class HomePage implements OnInit {
 
   nextLaunches: ILaunch[] = [];
   loading: boolean = false;
+  categories: string[] = [];
+  peopleInSpace: IPeopleInSpacePerson[] = [];
+  aliensInSpace: number | undefined;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -22,6 +27,8 @@ export class HomePage implements OnInit {
 
   ngOnInit() {
     this.getNextLaunches();
+    this.getPeopleInSpace();
+    this.getAliensInSpace();
   }
 
   getNextLaunches() {
@@ -41,5 +48,15 @@ export class HomePage implements OnInit {
 
   selectLaunch(launch: ILaunch) {
     console.log(launch);
+  }
+
+  getPeopleInSpace() {
+    this.httpClient.get<IResponsePeopleInSpace>('http://api.open-notify.org/astros.json')
+      .pipe(take(1))
+      .subscribe((response: IResponsePeopleInSpace) => this.peopleInSpace = response.people)
+  }
+
+  getAliensInSpace() {
+    this.aliensInSpace = Math.floor(Math.random() * 100) + 1;
   }
 }
