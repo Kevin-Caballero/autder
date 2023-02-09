@@ -27,11 +27,21 @@ ion-menu-button {
   text-decoration: none;
 }
 
+.list {
+  background-color: transparent;
+}
+
+.image {
+  height: 200px;
+  width: 100%;
+  object-fit: cover;
+}
+
 .scrolling-wrapper {
   overflow-x: scroll;
   overflow-y: hidden;
   white-space: nowrap;
-  padding: 0;
+  padding: 0 10px;
 
   .card {
     display: inline-block;
