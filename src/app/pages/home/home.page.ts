@@ -69,6 +69,6 @@ export class HomePage implements OnInit {
   }
 
   getAliensInSpace() {
-    this.aliensInSpace = Math.floor(Math.random() * 100) + 1;
+    this.aliensInSpace = Math.floor(Math.random() * 10) + 1;
   }
 }

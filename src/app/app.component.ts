@@ -8,6 +8,9 @@ import { Router } from '@angular/router';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
+  public appPages = [
+    { title: 'Home', url: '/home', icon: 'home' },
+  ];
   constructor(private themeService: ThemeService, private router: Router) {
     this.themeService.prefersDark ? this.themeService.setTheme('dark') : this.themeService.setTheme('light');
     this.router.navigateByUrl('splash')
