@@ -9,10 +9,10 @@
 
 <ion-content scrollY="true">
   <div class="app-logo">AUTDER</div>
-  <ion-list style="background: transparent;">
-    <ng-container *ngIf="nextLaunches.length > 0">
-      <ion-label style="padding: 16px; font-size: 12px; font-weight: 700;">Next Space Launches</ion-label>
-      <div class="scrolling-wrapper" style="background: #06000a; margin-top: 10px;">
+  <ion-list class="list">
+    <ng-container> <!-- *ngIf="nextLaunches.length > 0" -->
+      <ion-label class="launch-label">Next Space Launches</ion-label>
+      <div class="scrolling-wrapper">
         <ion-card class="card" *ngFor="let launch of nextLaunches" (click)="selectLaunch(launch)">
           <img height="150px" width="100%" src={{launch?.image}} />
           <ion-card-header>

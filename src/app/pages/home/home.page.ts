@@ -44,10 +44,13 @@ export class HomePage implements OnInit {
   }
 
   getNextLaunchesMock() {
+    this.loading = true;
     this.httpClient.get<IResponse<ILaunch>>('assets/api-mock-data/next-launches-mock.json').subscribe((res) => {
-      this.nextLaunches = res.results;
-      console.log(this.nextLaunches);
-      this.loading = false;
+      setTimeout(() => {
+        this.nextLaunches = res.results;
+        console.log(this.nextLaunches);
+        this.loading = false;
+      }, 3000);
     });
   }
 

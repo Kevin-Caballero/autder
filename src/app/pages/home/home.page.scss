@@ -37,16 +37,25 @@ ion-menu-button {
   object-fit: cover;
 }
 
+.launch-label {
+  padding: 6px 16px;
+  font-size: 12px;
+  font-weight: 700;
+  width: 100%;
+  display: block;
+}
+
 .scrolling-wrapper {
   overflow-x: scroll;
   overflow-y: hidden;
   white-space: nowrap;
-  padding: 0 10px;
+  padding: 0 7px;
+  min-height: 283.8px;
 
   .card {
     display: inline-block;
     width: 60%;
-    background-color: transparent;
+    background-color: #1b1b1b;
   }
 }
 
@@ -89,9 +98,8 @@ ion-toolbar {
 }
 
 .app-logo {
-  font-size: 20px;
-  margin-top: 30px;
-  margin-bottom: 10px;
+  font-size: 1rem;
+  margin-top: 20px;
   padding: 0px 16px;
   font-weight: 700;
   color: #645CBB;

@@ -1,3 +1,28 @@
 ion-content {
     --background: #645CBB;
+    position: relative;
+
+    .app-icon-container {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+
+        transform: translate(-50%, -50%);
+
+        .app-icon {
+            width: 300px;
+            max-width: 300px;
+
+            animation: levitating .5s infinite alternate ease-in-out;
+        }
+    }
+}
+
+@keyframes levitating {
+    0%{
+        transform: translate(0, -10px);
+    }
+    100% {
+        transform: translate(0, 10px);
+    }
 }
