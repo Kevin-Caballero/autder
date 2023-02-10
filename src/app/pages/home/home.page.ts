@@ -26,7 +26,8 @@ export class HomePage implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.getNextLaunches();
+    // this.getNextLaunches();
+    this.getNextLaunchesMock();
     this.getPeopleInSpace();
     this.getAliensInSpace();
   }
@@ -40,6 +41,14 @@ export class HomePage implements OnInit {
         console.log(this.nextLaunches);
         this.loading = false;
       });
+  }
+
+  getNextLaunchesMock() {
+    this.httpClient.get<IResponse<ILaunch>>('assets/api-mock-data/next-launches-mock.json').subscribe((res) => {
+      this.nextLaunches = res.results;
+      console.log(this.nextLaunches);
+      this.loading = false;
+    });
   }
 
   getLaunchName(name: string) {

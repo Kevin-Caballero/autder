@@ -7,13 +7,14 @@
   </ion-toolbar>
 </ion-header> -->
 
-<ion-content scrollY="true" class="ion-padding">
-  <ion-list style="background: none;">
+<ion-content scrollY="true">
+  <div class="app-logo">AUTDER</div>
+  <ion-list style="background: transparent;">
     <ng-container *ngIf="nextLaunches.length > 0">
-      <ion-label>Next Launches</ion-label>
-      <div class="scrolling-wrapper">
+      <ion-label style="padding: 16px; font-size: 12px; font-weight: 700;">Next Space Launches</ion-label>
+      <div class="scrolling-wrapper" style="background: #06000a; margin-top: 10px;">
         <ion-card class="card" *ngFor="let launch of nextLaunches" (click)="selectLaunch(launch)">
-          <img height="150px" width="100%" src={{launch?.image}}>
+          <img height="150px" width="100%" src={{launch?.image}} />
           <ion-card-header>
             <ion-card-subtitle>{{launch?.net | date:'longTime'}}</ion-card-subtitle>
             <ion-card-title>{{getLaunchName(launch.name)}}</ion-card-title>
@@ -25,18 +26,18 @@
       </div>
     </ng-container>
 
-    <div class="people-in-space-wrapper">
-      <ion-label>How many people is out there?</ion-label>
-      <div class="people in-space">
-        <ion-label>{{peopleInSpace.length}}</ion-label>
-      </div>
-    </div>
-
-    <div class="people-in-space-wrapper">
-      <ion-label>How many aliens are out there?</ion-label>
-      <div class="aliens in-space">
-        <ion-label>{{aliensInSpace}}</ion-label>
-      </div>
-    </div>
   </ion-list>
+  <div class="people-in-space-wrapper" style="margin-bottom: 20px;">
+    <ion-label style="font-size: 12px; font-weight: 700;">How many people is out there?</ion-label>
+    <div class="people in-space">
+      <ion-label>{{peopleInSpace.length}}</ion-label>
+    </div>
+  </div>
+
+  <div class="people-in-space-wrapper">
+    <ion-label style="font-size: 12px; font-weight: 700;">How many aliens are out there?</ion-label>
+    <div class="aliens in-space">
+      <ion-label>{{aliensInSpace}}</ion-label>
+    </div>
+  </div>
 </ion-content>
