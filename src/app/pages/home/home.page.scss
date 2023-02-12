@@ -54,8 +54,32 @@ ion-menu-button {
 
   .card {
     display: inline-block;
-    width: 60%;
+    width: 50%;
     background-color: #1b1b1b;
+    border-radius: 2.5em .8em 2.5em .8em;
+    min-height: 20em;
+    background-size: 100% 100% !important;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  ion-card-header {
+    width: 60%;
+    border-radius: 0 0 1.5em 0;
+    font-size: .8em;
+    padding-left: 1.2em;
+    color: #0b0b0b;
+    font-weight: 800;
+    text-align: center;
+  }
+
+  ion-card-content {
+    display: flex;
+    margin-top: 95%;
+    flex-direction: column;
+    background-color: rgba($color: #000000, $alpha: .75);
+    padding-top: .5em;
+    padding-bottom: .5em;
   }
 }
 
