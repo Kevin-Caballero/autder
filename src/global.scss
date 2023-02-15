@@ -27,9 +27,6 @@
 
 
 ion-toolbar {
-    // --background: linear-gradient(45deg, transparent, blue);
-    --ion-color-base: transparent !important;
-    // background: rgb(9,28,121);
-    --background: linear-gradient(30deg, transparent 80%, rgba(193, 81, 245, 0.4) 100%);
-    // background: linear-gradient(45deg, red, blue);
+    // --ion-color-base: var(--ion-color-tertiary) !important;
+    --background: linear-gradient(30deg, var(--ion-color-dark) 80%, var(--ion-color-secondary) 100%);
 }

@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { take } from 'rxjs';
 import { ILaunch } from 'src/app/models/launch.interface';
 import { IPeopleInSpacePerson } from 'src/app/models/people-in-space-person.interface';
@@ -23,7 +23,8 @@ export class HomePage implements OnInit {
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private httpClient: HttpClient
+    private httpClient: HttpClient,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -61,6 +62,7 @@ export class HomePage implements OnInit {
 
   selectLaunch(launch: ILaunch) {
     console.log(launch);
+    this.router.navigate(['/launch-detail'], { state: { launch } })
   }
 
   getPeopleInSpace() {
