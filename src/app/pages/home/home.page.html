@@ -7,108 +7,59 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content scrollY="true" class="ion-padding">
-  <ng-container>
-    <ion-label class="launch-label">Next Space Launches</ion-label>
-    <div class="scrolling-wrapper">
-      <ion-card [ngStyle]="{'background': 'url(' + launch?.image +')'}" class="card" *ngFor="let launch of nextLaunches"
-        (click)="selectLaunch(launch)">
-        <ng-container *ngIf="getStatusColor(launch.status) as props">
-          <ion-card-header [style.background-color]="props.bgColor">
-            <ion-text>{{props.text | uppercase}}</ion-text>
-          </ion-card-header>
-          <ion-card-content>
-            <ion-card-title>{{getLaunchName(launch.name)}}</ion-card-title>
-            <ion-card-subtitle>{{launch?.net | date:'longTime'}}</ion-card-subtitle>
-          </ion-card-content>
-        </ng-container>
-      </ion-card>
+<ion-content scrollY="false" class="ion-padding">
+  <div style=" height: 100%; display: flex; flex-direction: column; justify-content: space-between;">
+    <div>
+      <ion-label class="launch-label">Next Space Launches</ion-label>
+      <div class="scrolling-wrapper">
+        <ion-card [ngStyle]="{'background': 'url(' + launch?.image +')'}" class="card"
+          *ngFor="let launch of nextLaunches" (click)="selectLaunch(launch)">
+          <ng-container *ngIf="getStatusColor(launch.status) as props">
+            <ion-card-header [style.background-color]="props.bgColor">
+              <ion-text>{{props.text | uppercase}}</ion-text>
+            </ion-card-header>
+            <ion-card-content>
+              <ion-card-title>{{getLaunchName(launch.name)}}</ion-card-title>
+              <ion-card-subtitle>{{launch?.net | date:'longTime'}}</ion-card-subtitle>
+            </ion-card-content>
+          </ng-container>
+        </ion-card>
+      </div>
     </div>
-  </ng-container>
 
-  <ion-grid>
-    <ion-label style="font-size: 12px; font-weight: 700;">How many people is out there?</ion-label>
-    <ion-row>
-      <ion-col>
-        <div>
-          <div class="people in-space">
-            <ion-label>{{peopleInSpace.length}}</ion-label>
-          </div>
+    <div>
+      <ion-label style="font-size: 12px; font-weight: 700;">How many people is out there?</ion-label>
+      <div style="display: flex; justify-content: space-between; justify-self: flex-end;">
+        <div class="people in-space">
+          <ion-label>{{peopleInSpace.length}}</ion-label>
         </div>
-        <div class="ion-text-center">HUMANS</div>
-      </ion-col>
-      <ion-col>
-        <div>
-          <div class="aliens in-space">
-            <ion-label>{{aliensInSpace}}</ion-label>
-          </div>
+        <div class="aliens in-space">
+          <ion-label>{{aliensInSpace}}</ion-label>
         </div>
-        <div class="ion-text-center">ALIENS</div>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
-  <ion-grid>
-    <ion-label style="font-size: 12px; font-weight: 700;">How many people is out there?</ion-label>
-    <ion-row>
-      <ion-col>
-        <div>
-          <div class="people in-space">
-            <ion-label>{{peopleInSpace.length}}</ion-label>
+      </div>
+    </div>
+
+    <!-- <ion-grid style="width: 100%; height: fit-content;">
+      <ion-row>
+        <ion-col>
+          <div>
+            <div class="people in-space">
+              <ion-label>{{peopleInSpace.length}}</ion-label>
+            </div>
           </div>
-        </div>
-        <div class="ion-text-center">HUMANS</div>
-      </ion-col>
-      <ion-col>
-        <div>
-          <div class="aliens in-space">
-            <ion-label>{{aliensInSpace}}</ion-label>
+          <div class="ion-text-center">HUMANS</div>
+        </ion-col>
+        <ion-col>
+          <div>
+            <div class="aliens in-space">
+              <ion-label>{{aliensInSpace}}</ion-label>
+            </div>
           </div>
-        </div>
-        <div class="ion-text-center">ALIENS</div>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
-  <ion-grid>
-    <ion-label style="font-size: 12px; font-weight: 700;">How many people is out there?</ion-label>
-    <ion-row>
-      <ion-col>
-        <div>
-          <div class="people in-space">
-            <ion-label>{{peopleInSpace.length}}</ion-label>
-          </div>
-        </div>
-        <div class="ion-text-center">HUMANS</div>
-      </ion-col>
-      <ion-col>
-        <div>
-          <div class="aliens in-space">
-            <ion-label>{{aliensInSpace}}</ion-label>
-          </div>
-        </div>
-        <div class="ion-text-center">ALIENS</div>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
-  <ion-grid>
-    <ion-label style="font-size: 12px; font-weight: 700;">How many people is out there?</ion-label>
-    <ion-row>
-      <ion-col>
-        <div>
-          <div class="people in-space">
-            <ion-label>{{peopleInSpace.length}}</ion-label>
-          </div>
-        </div>
-        <div class="ion-text-center">HUMANS</div>
-      </ion-col>
-      <ion-col>
-        <div>
-          <div class="aliens in-space">
-            <ion-label>{{aliensInSpace}}</ion-label>
-          </div>
-        </div>
-        <div class="ion-text-center">ALIENS</div>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+          <div class="ion-text-center">ALIENS</div>
+        </ion-col>
+      </ion-row>
+    </ion-grid> -->
+
+  </div>
 
 </ion-content>

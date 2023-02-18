@@ -110,10 +110,12 @@ ion-toolbar {
 
   &.people {
     background-image: url('/assets/people-in-space.png');
+    width: 45%;
   }
 
   &.aliens {
     background-image: url('/assets/aliens-in-space.png');
+    width: 45%;
   }
 
   ion-label {
@@ -127,4 +129,9 @@ ion-toolbar {
   padding: 0px 16px;
   font-weight: 700;
   color: #645CBB;
+}
+
+ion-content {
+  --background: url('/assets/galaxy.gif') no-repeat center 80%;
+  background-color: #645CBB;
 }
