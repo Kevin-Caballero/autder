@@ -9,7 +9,7 @@ export class BusinessOperationsService {
   private _theSpaceDevsVersion = '2.2.0';
   private _theSpaceDevsBaseUrl = `${this._theSpaceDevsDomain}/${this._theSpaceDevsVersion}`;
 
-  private _openApiNotifyBaseUrl = 'http://api.open-notify.org';
+  private _openNotifyBaseUrl = 'http://api.open-notify.org';
 
   private _spaceFlightNewsDomain = 'https://api.spaceflightnewsapi.net';
   private _spaceFlightNewsVersion = 'v3';
@@ -18,7 +18,7 @@ export class BusinessOperationsService {
   constructor() { }
 
   public peopleInSpace() {
-    return `${this._openApiNotifyBaseUrl}/astros.json`;
+    return `${this._openNotifyBaseUrl}/astros.json`;
   }
 
   public launches(when?: 'previous' | 'upcoming') {
