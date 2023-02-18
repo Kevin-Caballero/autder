@@ -7,8 +7,16 @@ const routes: Routes = [
     loadChildren: () => import('./pages/home/home.module').then(m => m.HomePageModule)
   },
   {
-    path: 'tab2',
-    loadChildren: () => import('./pages/tab2/tab2.module').then(m => m.Tab2PageModule)
+    path: 'launches',
+    loadChildren: () => import('./pages/generic-list/generic-list.module').then(m => m.GenericListPageModule)
+  },
+  {
+    path: 'events',
+    loadChildren: () => import('./pages/generic-list/generic-list.module').then(m => m.GenericListPageModule)
+  },
+  {
+    path: 'news',
+    loadChildren: () => import('./pages/generic-list/generic-list.module').then(m => m.GenericListPageModule)
   },
   {
     path: 'config',
@@ -20,7 +28,7 @@ const routes: Routes = [
   },
   {
     path: 'launch-detail',
-    loadChildren: () => import('./pages/launch-detail/launch-detail.module').then(m => m.LaunchDetailPageModule)
+    loadChildren: () => import('./pages/details/launch-detail/launch-detail.module').then(m => m.LaunchDetailPageModule)
   },
   {
     path: '',

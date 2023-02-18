@@ -1,12 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { LoadingController } from '@ionic/angular';
 import { take } from 'rxjs';
-import { ILaunch } from 'src/app/models/launch.interface';
-import { IPeopleInSpacePerson } from 'src/app/models/people-in-space-person.interface';
-import { IResponsePeopleInSpace } from 'src/app/models/people-in-space-response.interface';
-import { IResponse } from 'src/app/models/response.interface';
-import { IStatus } from 'src/app/models/status.interface';
+import { IPeopleInSpacePerson, IResponsePeopleInSpace } from 'src/app/models/people-in-space.interface';
+import { ILaunch, IResponse, IStatus } from 'src/app/models/the-space-devs';
+import { BusinessOperationsService } from 'src/app/services/business-operations/business-operations.service';
 
 @Component({
   selector: 'app-folder',
@@ -22,9 +21,10 @@ export class HomePage implements OnInit {
   aliensInSpace: number | undefined;
 
   constructor(
-    private activatedRoute: ActivatedRoute,
     private httpClient: HttpClient,
-    private router: Router
+    private router: Router,
+    private bo: BusinessOperationsService,
+    private loadingCtrl: LoadingController
   ) { }
 
   ngOnInit() {
@@ -36,7 +36,7 @@ export class HomePage implements OnInit {
 
   getNextLaunches() {
     this.loading = true;
-    this.httpClient.get<IResponse<ILaunch>>('https://ll.thespacedevs.com/2.2.0/launch/upcoming/')
+    this.httpClient.get<IResponse<ILaunch>>(this.bo.launches('upcoming'))
       .pipe(take(1))
       .subscribe((res: IResponse<ILaunch>) => {
         this.nextLaunches = res.results;
@@ -45,13 +45,14 @@ export class HomePage implements OnInit {
       });
   }
 
-  getNextLaunchesMock() {
-    this.loading = true;
+  async getNextLaunchesMock() {
+    const loading = await this.loadingCtrl.create({ spinner: 'circles' });
+    loading.present();
     this.httpClient.get<IResponse<ILaunch>>('assets/api-mock-data/next-launches-mock.json').subscribe((res) => {
       setTimeout(() => {
         this.nextLaunches = res.results;
         console.log(this.nextLaunches);
-        this.loading = false;
+        loading.dismiss();
       }, 1000);
     });
   }
@@ -66,7 +67,7 @@ export class HomePage implements OnInit {
   }
 
   getPeopleInSpace() {
-    this.httpClient.get<IResponsePeopleInSpace>('http://api.open-notify.org/astros.json')
+    this.httpClient.get<IResponsePeopleInSpace>(this.bo.peopleInSpace())
       .pipe(take(1))
       .subscribe((response: IResponsePeopleInSpace) => this.peopleInSpace = response.people)
   }

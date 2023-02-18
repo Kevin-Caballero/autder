@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ILaunch } from 'src/app/models/launch.interface';
+import { ILaunch } from 'src/app/models/the-space-devs';
 
 @Component({
   selector: 'app-launch-detail',

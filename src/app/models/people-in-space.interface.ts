@@ -1,7 +1,11 @@
-import { IPeopleInSpacePerson } from "./people-in-space-person.interface";
 
 export interface IResponsePeopleInSpace {
     message: string;
     people: IPeopleInSpacePerson[];
     number: number;
+}
+
+export interface IPeopleInSpacePerson {
+    name: string;
+    craft: string;
 }

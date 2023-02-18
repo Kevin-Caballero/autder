@@ -10,6 +10,9 @@ import { Router } from '@angular/router';
 export class AppComponent {
   public appPages = [
     { title: 'Home', url: '/home', icon: 'home' },
+    { title: 'Launches', url: '/launches', icon: 'rocket' },
+    { title: 'Events', url: '/events', icon: 'planet' },
+    { title: 'News', url: '/news', icon: 'newspaper' },
     { title: 'Config', url: '/config', icon: 'cog' },
   ];
   constructor(private themeService: ThemeService, private router: Router) {
