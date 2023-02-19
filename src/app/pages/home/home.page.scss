@@ -131,7 +131,11 @@ ion-toolbar {
   color: #645CBB;
 }
 
+.galaxy {
+  height: 50%;
+}
+
 ion-content {
-  --background: url('/assets/galaxy.gif') no-repeat center 80%;
-  background-color: #645CBB;
+  --background: #645CBB;
+
 }

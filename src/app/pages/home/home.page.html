@@ -9,7 +9,7 @@
 
 <ion-content scrollY="false" class="ion-padding">
   <div style=" height: 100%; display: flex; flex-direction: column; justify-content: space-between;">
-    <div>
+    <div style="height: 60%;">
       <ion-label class="launch-label">Next Space Launches</ion-label>
       <div class="scrolling-wrapper">
         <ion-card [ngStyle]="{'background': 'url(' + launch?.image +')'}" class="card"
@@ -27,8 +27,10 @@
       </div>
     </div>
 
+    <img style="min-height: 20%;" src="assets/galaxy.gif" alt="">
+
     <div>
-      <ion-label style="font-size: 12px; font-weight: 700;">How many people is out there?</ion-label>
+      <ion-label style="height: 20%; font-size: 12px; font-weight: 700;">How many people is out there?</ion-label>
       <div style="display: flex; justify-content: space-between; justify-self: flex-end;">
         <div class="people in-space">
           <ion-label>{{peopleInSpace.length}}</ion-label>
@@ -38,28 +40,6 @@
         </div>
       </div>
     </div>
-
-    <!-- <ion-grid style="width: 100%; height: fit-content;">
-      <ion-row>
-        <ion-col>
-          <div>
-            <div class="people in-space">
-              <ion-label>{{peopleInSpace.length}}</ion-label>
-            </div>
-          </div>
-          <div class="ion-text-center">HUMANS</div>
-        </ion-col>
-        <ion-col>
-          <div>
-            <div class="aliens in-space">
-              <ion-label>{{aliensInSpace}}</ion-label>
-            </div>
-          </div>
-          <div class="ion-text-center">ALIENS</div>
-        </ion-col>
-      </ion-row>
-    </ion-grid> -->
-
   </div>
 
 </ion-content>
