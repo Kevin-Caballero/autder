@@ -1,8 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { LoadingController } from '@ionic/angular';
+import { LoadingController, ModalController } from '@ionic/angular';
 import { take } from 'rxjs';
+import { PeopleInSpaceListComponent } from 'src/app/components/people-in-space-list/people-in-space-list.component';
 import { IPeopleInSpacePerson, IResponsePeopleInSpace } from 'src/app/models/people-in-space.interface';
 import { ILaunch, IResponse, IStatus } from 'src/app/models/the-space-devs';
 import { BusinessOperationsService } from 'src/app/services/business-operations/business-operations.service';
@@ -17,14 +18,15 @@ export class HomePage implements OnInit {
   nextLaunches: ILaunch[] = [];
   loading: boolean = false;
   categories: string[] = [];
-  peopleInSpace: IPeopleInSpacePerson[] = [];
+  peopleInSpaceRaw: IPeopleInSpacePerson[] = [];
   aliensInSpace: number | undefined;
 
   constructor(
     private httpClient: HttpClient,
     private router: Router,
     private bo: BusinessOperationsService,
-    private loadingCtrl: LoadingController
+    private loadingCtrl: LoadingController,
+    private modalCtrl: ModalController
   ) { }
 
   ngOnInit() {
@@ -69,11 +71,28 @@ export class HomePage implements OnInit {
   getPeopleInSpace() {
     this.httpClient.get<IResponsePeopleInSpace>(this.bo.peopleInSpace())
       .pipe(take(1))
-      .subscribe((response: IResponsePeopleInSpace) => this.peopleInSpace = response.people)
+      .subscribe((response: IResponsePeopleInSpace) => {
+        this.peopleInSpaceRaw = response.people;
+        response.people.map((p: { name: string, craft: string }) => {
+          this.httpClient.get(this.bo.astronauts(p.name.split(' ')[1]))
+            .pipe(take(1))
+            .subscribe(astronaut => console.log(astronaut))
+        })
+        console.log(this.peopleInSpaceRaw);
+      })
   }
 
   getAliensInSpace() {
     this.aliensInSpace = Math.floor(Math.random() * 10) + 1;
+  }
+
+  async openModal() {
+    const modal = await this.modalCtrl.create({
+      component: PeopleInSpaceListComponent,
+      breakpoints: [0, 0.3, 0.5, 0.8],
+      initialBreakpoint: 0.5
+    })
+    modal.present()
   }
 
   getStatusColor(status: IStatus | undefined): { text: string, bgColor: string, textColor: string } {

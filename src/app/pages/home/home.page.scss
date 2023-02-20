@@ -1,45 +1,10 @@
 ion-menu-button {
-  color: var(--ion-color-primary);
+  color: var(--ion-color-primary-tint);
 }
 
-#container {
-  text-align: center;
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-#container strong {
-  font-size: 20px;
-  line-height: 26px;
-}
-
-#container p {
-  font-size: 16px;
-  line-height: 22px;
-  color: #8c8c8c;
-  margin: 0;
-}
-
-#container a {
-  text-decoration: none;
-}
-
-.list {
-  background-color: transparent;
-}
-
-.image {
-  height: 200px;
-  width: 100%;
-  object-fit: cover;
-}
-
-.launch-label {
+.home-label {
   padding: 6px 16px;
-  font-size: 12px;
+  font-size: 1.5rem;
   font-weight: 700;
   width: 100%;
   display: block;
@@ -49,7 +14,8 @@ ion-menu-button {
   overflow-x: scroll;
   overflow-y: hidden;
   white-space: nowrap;
-  padding: 0 7px;
+  padding: 0;
+  margin-left: 1rem;
   min-height: 283.8px;
 
   .card {
@@ -92,43 +58,55 @@ ion-toolbar {
   --ion-color-base: transparent !important;
 }
 
-.people-in-space-wrapper {
+.in-space-wrapper {
   margin-top: 10px;
-  padding: 0px 16px;
-}
-
-.in-space {
-  margin-top: 10px;
-  border: 1px solid var(--ion-color-primary);
-  border-radius: 10px;
-  height: 100px;
-  background-size: cover;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 5px;
+  justify-content: space-between;
+  padding: 0 1rem 1rem 1rem;
+  gap: .7rem;
 
-  &.people {
-    background-image: url('/assets/people-in-space.png');
-    width: 45%;
+  ion-text {
+    text-align: center;
   }
 
-  &.aliens {
-    background-image: url('/assets/aliens-in-space.png');
-    width: 45%;
+  .space-card-text-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
   }
 
-  ion-label {
-    font-size: 3em;
-    font-weight: bold;
+  .in-space {
+    border: 1px solid var(--ion-color-primary);
+    border-radius: 10px;
+    height: 100px;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 5px;
+    width: 100%;
+
+    &.people {
+      background-image: url('/assets/people-in-space.png');
+    }
+
+    &.aliens {
+      background-image: url('/assets/aliens-in-space.png');
+    }
+
+    ion-label {
+      font-size: 3em;
+      font-weight: bold;
+    }
   }
 }
+
 
 .app-logo {
   font-size: 1rem;
   padding: 0px 16px;
   font-weight: 700;
-  color: #645CBB;
+  color: var(--ion-color-primary);
 }
 
 .galaxy {
@@ -136,6 +114,5 @@ ion-toolbar {
 }
 
 ion-content {
-  --background: #645CBB;
-
+  --background: var(--ion-color-primary);
 }

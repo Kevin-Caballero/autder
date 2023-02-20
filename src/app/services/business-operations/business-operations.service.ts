@@ -25,6 +25,10 @@ export class BusinessOperationsService {
     return `${this._theSpaceDevsBaseUrl}/launch/${when || ''}`;
   }
 
+  public astronauts(name: string) {
+    return `${this._theSpaceDevsBaseUrl}/astronaut?search=${name}`;
+  }
+
   public events(when?: 'previous' | 'upcoming') {
     return `${this._theSpaceDevsBaseUrl}/event/${when || ''}`;
   }
