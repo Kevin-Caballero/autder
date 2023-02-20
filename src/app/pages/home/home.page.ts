@@ -19,6 +19,7 @@ export class HomePage implements OnInit {
   loading: boolean = false;
   categories: string[] = [];
   peopleInSpaceRaw: IPeopleInSpacePerson[] = [];
+  peopleInSpace: any[] = [];
   aliensInSpace: number | undefined;
 
   constructor(
@@ -69,14 +70,19 @@ export class HomePage implements OnInit {
   }
 
   getPeopleInSpace() {
+    //TODO: we have to make this req (and launches req) from splash and pash data to this screen 'cause the api is pretty slow
     this.httpClient.get<IResponsePeopleInSpace>(this.bo.peopleInSpace())
       .pipe(take(1))
       .subscribe((response: IResponsePeopleInSpace) => {
         this.peopleInSpaceRaw = response.people;
         response.people.map((p: { name: string, craft: string }) => {
-          this.httpClient.get(this.bo.astronauts(p.name.split(' ')[1]))
+
+          this.httpClient.get(this.bo.astronauts(p.name))
             .pipe(take(1))
-            .subscribe(astronaut => console.log(astronaut))
+            .subscribe(astronaut => {
+              console.log(astronaut, p.name);
+              this.peopleInSpace.push(astronaut)
+            })
         })
         console.log(this.peopleInSpaceRaw);
       })
@@ -87,6 +93,8 @@ export class HomePage implements OnInit {
   }
 
   async openModal() {
+    console.log('PEOPLE IN SPACE', this.peopleInSpace);
+
     const modal = await this.modalCtrl.create({
       component: PeopleInSpaceListComponent,
       breakpoints: [0, 0.3, 0.5, 0.8],
