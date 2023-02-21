@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LoadingController, ModalController } from '@ionic/angular';
 import { take } from 'rxjs';
@@ -27,38 +27,43 @@ export class HomePage implements OnInit {
     private router: Router,
     private bo: BusinessOperationsService,
     private loadingCtrl: LoadingController,
-    private modalCtrl: ModalController
+    private modalCtrl: ModalController,
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit() {
+    if (this.router.getCurrentNavigation()?.extras.state) {
+      const data = this.router.getCurrentNavigation()?.extras.state;
+      this.nextLaunches = data?.['nextLaunches']
+    }
     // this.getNextLaunches();
-    this.getNextLaunchesMock();
+    // this.getNextLaunchesMock();
     this.getPeopleInSpace();
     this.getAliensInSpace();
   }
 
-  getNextLaunches() {
-    this.loading = true;
-    this.httpClient.get<IResponse<ILaunch>>(this.bo.launches('upcoming'))
-      .pipe(take(1))
-      .subscribe((res: IResponse<ILaunch>) => {
-        this.nextLaunches = res.results;
-        console.log(this.nextLaunches);
-        this.loading = false;
-      });
-  }
+  // getNextLaunches() {
+  //   this.loading = true;
+  //   this.httpClient.get<IResponse<ILaunch>>(this.bo.launches('upcoming'))
+  //     .pipe(take(1))
+  //     .subscribe((res: IResponse<ILaunch>) => {
+  //       this.nextLaunches = res.results;
+  //       console.log(this.nextLaunches);
+  //       this.loading = false;
+  //     });
+  // }
 
-  async getNextLaunchesMock() {
-    const loading = await this.loadingCtrl.create({ spinner: 'circles' });
-    loading.present();
-    this.httpClient.get<IResponse<ILaunch>>('assets/api-mock-data/next-launches-mock.json').subscribe((res) => {
-      setTimeout(() => {
-        this.nextLaunches = res.results;
-        console.log(this.nextLaunches);
-        loading.dismiss();
-      }, 1000);
-    });
-  }
+  // async getNextLaunchesMock() {
+  //   const loading = await this.loadingCtrl.create({ spinner: 'circles' });
+  //   loading.present();
+  //   this.httpClient.get<IResponse<ILaunch>>('assets/api-mock-data/next-launches-mock.json').subscribe((res) => {
+  //     setTimeout(() => {
+  //       this.nextLaunches = res.results;
+  //       console.log(this.nextLaunches);
+  //       loading.dismiss();
+  //     }, 1000);
+  //   });
+  // }
 
   getLaunchName(name: string) {
     return name?.split('|')[0]
@@ -75,15 +80,14 @@ export class HomePage implements OnInit {
       .pipe(take(1))
       .subscribe((response: IResponsePeopleInSpace) => {
         this.peopleInSpaceRaw = response.people;
-        response.people.map((p: { name: string, craft: string }) => {
-
-          this.httpClient.get(this.bo.astronauts(p.name))
-            .pipe(take(1))
-            .subscribe(astronaut => {
-              console.log(astronaut, p.name);
-              this.peopleInSpace.push(astronaut)
-            })
-        })
+        // response.people.map((p: { name: string, craft: string }) => {
+        //   this.httpClient.get(this.bo.astronauts(p.name))
+        //     .pipe(take(1))
+        //     .subscribe(astronaut => {
+        //       console.log(astronaut, p.name);
+        //       this.peopleInSpace.push(astronaut)
+        //     })
+        // })
         console.log(this.peopleInSpaceRaw);
       })
   }
