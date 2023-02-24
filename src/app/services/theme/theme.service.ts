@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, Subject, of } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +8,7 @@ export class ThemeService {
 
   public prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
   public currentTheme: 'dark' | 'light' = this.prefersDark ? 'dark' : 'light';
-  public _theme = new Subject<'dark' | 'light'>();
+  public _theme = new BehaviorSubject(this.currentTheme);
 
   constructor() {
     this._theme.next(this.currentTheme)

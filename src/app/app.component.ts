@@ -24,7 +24,11 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.themeService._theme.subscribe(theme => this.currentTheme = theme);
+    this.themeService._theme.subscribe(theme => {
+      console.log('subscription');
+
+      this.currentTheme = theme
+    });
   }
 
 

@@ -18,8 +18,7 @@ export class HomePage implements OnInit {
   nextLaunches: ILaunch[] = [];
   loading: boolean = false;
   categories: string[] = [];
-  peopleInSpaceRaw: IPeopleInSpacePerson[] = [];
-  peopleInSpace: any[] = [];
+  peopleInSpace: IPeopleInSpacePerson[] = [];
   aliensInSpace: number | undefined;
 
   constructor(
@@ -32,12 +31,12 @@ export class HomePage implements OnInit {
   ) { }
 
   ngOnInit() {
-    if (this.router.getCurrentNavigation()?.extras.state) {
-      const data = this.router.getCurrentNavigation()?.extras.state;
-      this.nextLaunches = data?.['nextLaunches']
-    }
+    // if (this.router.getCurrentNavigation()?.extras.state) {
+    //   const data = this.router.getCurrentNavigation()?.extras.state;
+    //   this.nextLaunches = data?.['nextLaunches']; //TODO: save this in cache
+    // }
     // this.getNextLaunches();
-    // this.getNextLaunchesMock();
+    this.getNextLaunchesMock();
     this.getPeopleInSpace();
     this.getAliensInSpace();
   }
@@ -53,17 +52,17 @@ export class HomePage implements OnInit {
   //     });
   // }
 
-  // async getNextLaunchesMock() {
-  //   const loading = await this.loadingCtrl.create({ spinner: 'circles' });
-  //   loading.present();
-  //   this.httpClient.get<IResponse<ILaunch>>('assets/api-mock-data/next-launches-mock.json').subscribe((res) => {
-  //     setTimeout(() => {
-  //       this.nextLaunches = res.results;
-  //       console.log(this.nextLaunches);
-  //       loading.dismiss();
-  //     }, 1000);
-  //   });
-  // }
+  async getNextLaunchesMock() {
+    const loading = await this.loadingCtrl.create({ spinner: 'circles' });
+    loading.present();
+    this.httpClient.get<IResponse<ILaunch>>('assets/api-mock-data/next-launches-mock.json').subscribe((res) => {
+      setTimeout(() => {
+        this.nextLaunches = res.results;
+        console.log(this.nextLaunches);
+        loading.dismiss();
+      }, 1000);
+    });
+  }
 
   getLaunchName(name: string) {
     return name?.split('|')[0]
@@ -79,7 +78,7 @@ export class HomePage implements OnInit {
     this.httpClient.get<IResponsePeopleInSpace>(this.bo.peopleInSpace())
       .pipe(take(1))
       .subscribe((response: IResponsePeopleInSpace) => {
-        this.peopleInSpaceRaw = response.people;
+        this.peopleInSpace = response.people;
         // response.people.map((p: { name: string, craft: string }) => {
         //   this.httpClient.get(this.bo.astronauts(p.name))
         //     .pipe(take(1))
@@ -88,7 +87,7 @@ export class HomePage implements OnInit {
         //       this.peopleInSpace.push(astronaut)
         //     })
         // })
-        console.log(this.peopleInSpaceRaw);
+        console.log(this.peopleInSpace);
       })
   }
 
@@ -101,6 +100,8 @@ export class HomePage implements OnInit {
 
     const modal = await this.modalCtrl.create({
       component: PeopleInSpaceListComponent,
+      backdropDismiss: true,
+      componentProps: { peopleInSpace: this.peopleInSpace },
       breakpoints: [0, 0.3, 0.5, 0.8],
       initialBreakpoint: 0.5
     })

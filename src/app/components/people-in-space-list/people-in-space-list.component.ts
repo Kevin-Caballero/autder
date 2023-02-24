@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { IPeopleInSpacePerson } from 'src/app/models/people-in-space.interface';
 
 @Component({
   selector: 'app-people-in-space-list',
@@ -7,10 +8,12 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class PeopleInSpaceListComponent implements OnInit {
 
-  @Input() data: any[] = [];
+  peopleInSpace: IPeopleInSpacePerson[] = [];
 
   constructor() { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    console.log('peopleInSpace: ', this.peopleInSpace);
+  }
 
 }
