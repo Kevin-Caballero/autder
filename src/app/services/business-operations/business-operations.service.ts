@@ -18,7 +18,7 @@ export class BusinessOperationsService {
   constructor() { }
 
   public peopleInSpace() {
-    return `${this._openNotifyBaseUrl}/astros.json`;
+    return `${this._theSpaceDevsBaseUrl}/astronaut?in_space=true&limit=20`;
   }
 
   public launches(when?: 'previous' | 'upcoming') {

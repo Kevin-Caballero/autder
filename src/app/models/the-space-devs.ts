@@ -187,3 +187,40 @@ export interface IResponse<T> {
     previus: string | null;
     results: T[];
 }
+
+export interface IAgencyDetail extends IAgency {
+    featured: boolean;
+    country_code: string;
+    abbrev: string;
+    description: string;
+    administrator: string;
+    founding_year: string;
+    launchers: string;
+    spacecraft: string;
+    parent?: any;
+    image_url: string;
+    logo_url: string;
+}
+
+export interface IAstronaut {
+    id: number;
+    url: string;
+    name: string;
+    status: IStatus;
+    type: IType;
+    age: number;
+    date_of_birth: string;
+    date_of_death?: any;
+    nationality: string;
+    bio: string;
+    twitter?: any;
+    instagram?: any;
+    wiki: string;
+    agency: IAgencyDetail;
+    profile_image: string;
+    profile_image_thumbnail: string;
+    flights_count: number;
+    landings_count: number;
+    last_flight: Date;
+    first_flight: Date;
+}

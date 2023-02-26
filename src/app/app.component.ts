@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ThemeService } from './services/theme/theme.service';
 import { Router } from '@angular/router';
+import { StorageService } from './services/storage/storage.service';
 
 @Component({
   selector: 'app-root',
@@ -18,17 +19,13 @@ export class AppComponent implements OnInit {
   ];
   currentTheme: string | undefined;
 
-  constructor(private themeService: ThemeService, private router: Router) {
+  constructor(private themeService: ThemeService, private router: Router, private storage: StorageService) {
     this.themeService.prefersDark ? this.themeService.setTheme('dark') : this.themeService.setTheme('light');
     this.router.navigateByUrl('splash');
   }
 
-  ngOnInit(): void {
-    this.themeService._theme.subscribe(theme => {
-      console.log('subscription');
-
-      this.currentTheme = theme
-    });
+  async ngOnInit() {
+    this.themeService._theme.subscribe(theme => { this.currentTheme = theme });
   }
 
 

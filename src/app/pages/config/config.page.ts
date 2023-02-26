@@ -18,8 +18,6 @@ export class ConfigPage implements OnInit {
   }
 
   toggleTheme() {
-    console.log('toggleTheme');
-
     this.theme === 'dark' ? this.themeService.setTheme('light') : this.themeService.setTheme('dark');
     this.theme = this.themeService.currentTheme;
   }

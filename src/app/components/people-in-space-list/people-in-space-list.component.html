@@ -1,12 +1,12 @@
 <ion-content>
   <ion-list>
-    <ion-item *ngFor="let person of peopleInSpace">
+    <ion-item *ngFor="let person of peopleInSpace" (click)="showDetail(person)">
       <ion-avatar slot="start">
-        <ion-img src="https://i.pravatar.cc/300?u=b"></ion-img>
+        <ion-img [src]="person.profile_image"></ion-img>
       </ion-avatar>
       <ion-label>
         <h2>{{person.name}}</h2>
-        <p>Craft: {{person.craft}}</p>
+        <p>{{person.agency.abbrev}}</p>
       </ion-label>
     </ion-item>
   </ion-list>

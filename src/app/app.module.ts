@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
+import { IonicStorageModule } from '@ionic/storage-angular';
+
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 
@@ -19,7 +21,8 @@ import { ComponentsModule } from './components/components.module';
     HttpClientModule,
     FormsModule,
     IonicModule,
-    ComponentsModule
+    ComponentsModule,
+    IonicStorageModule.forRoot()
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],

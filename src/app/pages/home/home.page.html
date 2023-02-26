@@ -9,7 +9,7 @@
 
 <ion-content scrollY="false">
   <div style=" height: 100%; display: flex; flex-direction: column; justify-content: space-between;">
-    <div style="height: 60%; margin-top: 1rem;">
+    <div style="height: 60%; min-height: 50%; margin-top: 1rem;">
       <ion-label class="home-label">Next Space Launches</ion-label>
       <div class="scrolling-wrapper">
         <ion-card style="margin-top: .2rem;" [ngStyle]="{'background': 'url(' + launch?.image +')'}" class="card"
@@ -34,7 +34,7 @@
       <div class="in-space-wrapper">
         <div class="space-card-text-wrapper">
           <div class="people in-space" (click)="openModal()">
-            <ion-label>{{peopleInSpace.length}}</ion-label>
+            <ion-label>{{peopleInSpace?.length || ''}}</ion-label>
           </div>
           <ion-text>HUMANS</ion-text>
         </div>

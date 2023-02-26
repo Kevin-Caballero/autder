@@ -18,7 +18,7 @@ export class HomePage implements OnInit {
   nextLaunches: ILaunch[] = [];
   loading: boolean = false;
   categories: string[] = [];
-  peopleInSpace: IPeopleInSpacePerson[] = [];
+  peopleInSpace: any[] = [];
   aliensInSpace: number | undefined;
 
   constructor(
@@ -31,37 +31,12 @@ export class HomePage implements OnInit {
   ) { }
 
   ngOnInit() {
-    // if (this.router.getCurrentNavigation()?.extras.state) {
-    //   const data = this.router.getCurrentNavigation()?.extras.state;
-    //   this.nextLaunches = data?.['nextLaunches']; //TODO: save this in cache
-    // }
-    // this.getNextLaunches();
-    this.getNextLaunchesMock();
-    this.getPeopleInSpace();
+    if (this.router.getCurrentNavigation()?.extras.state) {
+      const data = this.router.getCurrentNavigation()?.extras.state;
+      this.nextLaunches = data?.['nextLaunches']; //TODO: save this in cache
+      this.peopleInSpace = data?.['peopleInSpace']; //TODO: save this in cache
+    }
     this.getAliensInSpace();
-  }
-
-  // getNextLaunches() {
-  //   this.loading = true;
-  //   this.httpClient.get<IResponse<ILaunch>>(this.bo.launches('upcoming'))
-  //     .pipe(take(1))
-  //     .subscribe((res: IResponse<ILaunch>) => {
-  //       this.nextLaunches = res.results;
-  //       console.log(this.nextLaunches);
-  //       this.loading = false;
-  //     });
-  // }
-
-  async getNextLaunchesMock() {
-    const loading = await this.loadingCtrl.create({ spinner: 'circles' });
-    loading.present();
-    this.httpClient.get<IResponse<ILaunch>>('assets/api-mock-data/next-launches-mock.json').subscribe((res) => {
-      setTimeout(() => {
-        this.nextLaunches = res.results;
-        console.log(this.nextLaunches);
-        loading.dismiss();
-      }, 1000);
-    });
   }
 
   getLaunchName(name: string) {
@@ -73,37 +48,18 @@ export class HomePage implements OnInit {
     this.router.navigate(['/launch-detail'], { state: { launch } })
   }
 
-  getPeopleInSpace() {
-    //TODO: we have to make this req (and launches req) from splash and pash data to this screen 'cause the api is pretty slow
-    this.httpClient.get<IResponsePeopleInSpace>(this.bo.peopleInSpace())
-      .pipe(take(1))
-      .subscribe((response: IResponsePeopleInSpace) => {
-        this.peopleInSpace = response.people;
-        // response.people.map((p: { name: string, craft: string }) => {
-        //   this.httpClient.get(this.bo.astronauts(p.name))
-        //     .pipe(take(1))
-        //     .subscribe(astronaut => {
-        //       console.log(astronaut, p.name);
-        //       this.peopleInSpace.push(astronaut)
-        //     })
-        // })
-        console.log(this.peopleInSpace);
-      })
-  }
-
   getAliensInSpace() {
     this.aliensInSpace = Math.floor(Math.random() * 10) + 1;
   }
 
   async openModal() {
-    console.log('PEOPLE IN SPACE', this.peopleInSpace);
 
     const modal = await this.modalCtrl.create({
       component: PeopleInSpaceListComponent,
       backdropDismiss: true,
       componentProps: { peopleInSpace: this.peopleInSpace },
-      breakpoints: [0, 0.3, 0.5, 0.8],
-      initialBreakpoint: 0.5
+      breakpoints: [0, 0.3, 0.5, 0.9, 1],
+      initialBreakpoint: 0.88
     })
     modal.present()
   }
