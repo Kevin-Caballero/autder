@@ -22,12 +22,8 @@ export class HomePage implements OnInit {
   aliensInSpace: number | undefined;
 
   constructor(
-    private httpClient: HttpClient,
     private router: Router,
-    private bo: BusinessOperationsService,
-    private loadingCtrl: LoadingController,
     private modalCtrl: ModalController,
-    private route: ActivatedRoute
   ) { }
 
   ngOnInit() {

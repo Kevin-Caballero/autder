@@ -7,6 +7,27 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-
+<ion-content class="ion-padding">
+  <div style="height: 30%;"></div>
+  <ion-list>
+    <ion-item style="padding-top: .5rem; padding-bottom: .5rem; " *ngFor="let item of previousData">
+      <img crossorigin="anonymous" style="border-radius: 5%; max-width: 30px;" height="20px"
+        [src]="getImgUrl(item.pad.location.country_code)">
+      <div style="margin-left: 1rem;">{{getName(item.name)}}</div>
+      <div slot="end" style="display: flex; flex-direction: column;">
+        <div>
+          <ion-icon color="primary" name="calendar-outline"></ion-icon>
+          {{item.net | date}}
+        </div>
+        <div>
+          <ion-icon color="primary" name="rocket-outline"></ion-icon>
+          {{item.rocket.configuration.name}}
+        </div>
+      </div>
+    </ion-item>
+  </ion-list>
+  <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)" [disabled]="numTimesLeft <= 0">
+    <ion-infinite-scroll-content loadingSpinner="bubbles">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 </ion-content>

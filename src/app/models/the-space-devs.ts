@@ -75,7 +75,7 @@ export interface IPad {
     map_url: string;
     latitude: string;
     longitude: string;
-    location: Location;
+    location: ILocation;
     map_image: string;
     total_launch_count: number;
     orbital_launch_attempt_count: number;
